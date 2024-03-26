@@ -4,7 +4,6 @@ from ultralytics import YOLO
 import cv2
 
 model = YOLO('yolov8n.pt')
-model.to('cuda')
 
 classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
               "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
