@@ -2,6 +2,7 @@ import math
 import cv2 # Import OpenCV Library
 from ultralytics import YOLO
 import cv2
+import json
 
 model = YOLO('yolov8n.pt')
 model.to('cuda')
@@ -58,6 +59,11 @@ while True:
                 thickness = 2
 
                 cv2.putText(img, classNames[cls] + " " + str(confidence), org, font, fontScale, color, thickness)
+
+                info = { 'xres' : img.shape[0], 'yres' : img.shape[1], 'x1' : x1, 'x2' : x2, 'y1' : y1, 'y2' : y2 }
+
+                with open('my_dict.json', 'w') as f:
+                    json.dump(info, f)
 
     cv2.imshow('Webcam', img)
     if cv2.waitKey(1) == ord('q'):
